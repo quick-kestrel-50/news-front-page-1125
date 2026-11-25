@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Draw the 25 Nov 2026 newspaper front page (1024x1024) with PIL only."""
+"""Draw the 25 Nov 2026 newspaper front page (1024x1024) with PIL only.
+
+The Daily Globe: a one-image summary of the world news of Wednesday
+25 November 2026, laid out as a newspaper front page. Every story was
+compiled from Reuters, AP and AFP reporting of 24-25 November 2026,
+and every picture on the page is drawn here, in code.
+"""
 from PIL import Image, ImageDraw, ImageFont
 import os
 
@@ -171,7 +177,7 @@ y += 8
 d.rectangle([M, y, W - M, y + 26], fill=INK)
 d.text((M + 12, y + 5), "ALSO TODAY", font=font(SANS_B, 16), fill=PAPER)
 y += 32
-f_tick = font(SERIF, 15.5 if False else 15)
+f_tick = font(SERIF, 15)
 ticker = ("Trump pardons turkeys Freedom & Feathers, awards Giuliani the Medal of Freedom  ·  U.S. consumer "
           "confidence at a near-two-year high  ·  Chess: Gukesh–Sindarov draw Game 1 in Geneva  ·  Radar outage delays O'Hare flights")
 y = para(ticker, M, y, f_tick, W - 2 * M, 20)

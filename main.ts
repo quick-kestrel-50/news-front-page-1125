@@ -10,12 +10,17 @@
 // MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { copyFileSync, mkdirSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
+const source = join(here, 'entry.png');
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
+if (!existsSync(source)) {
+  throw new Error('entry.png is missing beside main.ts; the entry image must be committed with the program');
+}
+
 mkdirSync(outDir, { recursive: true });
-copyFileSync(join(here, 'entry.png'), join(outDir, 'entry.png'));
+copyFileSync(source, join(outDir, 'entry.png'));
